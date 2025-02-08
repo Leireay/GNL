@@ -1,19 +1,22 @@
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
+
+# include <unistd.h>
 # include <stdlib.h>
-# include <unistd.h> 
 # include <stdio.h>
-# include <fcntl.h>
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
-size_t	ft_strlen(const char *s);
-char	*ft_strchr(const char *str, int c);
-char	*ft_strjoin(char *buffer, char *s);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-int    ft_endl(char *str);
-char	*ft_get_line(char *buffer);
-char	*ft_new_str(char *buffer);
-char	*ft_read_str(int fd, char *buffer);
+# if BUFFER_SIZE < 0
+#  undef BUFFER_SIZE
+#  define BUFFER_SIZE 0
+# endif
+
 char	*get_next_line(int fd);
+void	strreplace(char **a, char *b);
+char	*strnjoin(char *s1, char *s2, size_t n);
+void	*ft_calloc(size_t nmemb, size_t size);
 
-#endif
+#endif 
